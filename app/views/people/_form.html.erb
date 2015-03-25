@@ -1,0 +1,30 @@
+<%= form_for(@person) do |f| %>
+  <% if @person.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@person.errors.count, "error") %> prohibited this person from being saved:</h2>
+
+      <ul>
+      <% @person.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :height %> in inches<br>
+    <%= f.number_field :height %>
+  </div>
+  <div class="field">
+    <%= f.label :weight %> in lbs<br>
+    <%= f.number_field :weight %>
+  </div>
+  <div class="field">
+    <%= f.label :gender %> Male or Female<br>
+    <%#= f.select(:gender, options_for_select([["Male", "Male"], ["Female", "Female"]])) %>
+    <%= f.select :gender, [ 'Male', 'Female'], :prompt => 'Select One' %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
